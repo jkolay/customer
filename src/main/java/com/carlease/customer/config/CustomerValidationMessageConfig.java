@@ -6,7 +6,7 @@ public class CustomerValidationMessageConfig {
     public static final String CUSTOMER_NAME_SIZE_NOT_VALID = "Customer name size is not valid";
     public static final String CUSTOMER_NAME_PATTERN_NOT_VALID = "Customer Name pattern is not valid";
     public static final String STREET_NOT_NULL = "Street can not be null";
-    public static final String STREET_SIZE_NOT_VALID = "Street size can be maximum of 500 characters";
+    public static final String STREET_SIZE_NOT_VALID = "Street size can be maximum of 255 characters";
     public static final String STREET_PATTERN_NOT_VALID = "Street Pattern is not valid";
     public static final String HOUSE_NUMBER_NOT_NULL = "house number can not be null";
     public static final String ZIPCODE_NOT_NULL = "zip code can not be null";

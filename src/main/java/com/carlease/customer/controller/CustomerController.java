@@ -27,7 +27,7 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @Operation(description = "craete a customer")
+    @Operation(description = "create a customer")
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public CustomerResponse createCustomer(@Valid @RequestBody CustomerRequest request) throws CustomerException {
