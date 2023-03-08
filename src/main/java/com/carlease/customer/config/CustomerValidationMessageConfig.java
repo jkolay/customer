@@ -1,5 +1,8 @@
 package com.carlease.customer.config;
 
+/**
+ * Customer model validation message config class
+ */
 public class CustomerValidationMessageConfig {
     public static final String CUSTOMER_NAME_NOT_NULL = "Customer name can not be null";
 
@@ -23,4 +26,5 @@ public class CustomerValidationMessageConfig {
     public static final String CUSTOMER_PLACE_PATTERN_NOT_VALID = "Place pattern is not valid";
     public static final String CUSTOMER_EMAIL_PATTERN_NOT_VALID = "Email pattern is not valid";
     public static final String CUSTOMER_PHONE_NUMBER_PATTERN_NOT_VALID = "Phone number pattern is not valid";
+    public static final String STATUS_NOT_NULL = "Status can not be null";
 }

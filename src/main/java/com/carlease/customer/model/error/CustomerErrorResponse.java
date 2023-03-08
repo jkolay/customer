@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
-
+/**
+ * Customer Error response model class
+ */
 @Getter
 @Setter
 @NoArgsConstructor

@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.time.LocalDateTime;
 
+/**
+ * Customer response model class
+ */
 @Getter
 @Setter
 @AllArgsConstructor
@@ -29,6 +32,8 @@ public class CustomerResponse {
     private String emailAddress;
 
     private String phoneNumber;
+
+    private String status;
 
     private LocalDateTime createdAt;
 

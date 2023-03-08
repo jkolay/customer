@@ -12,6 +12,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
+/**
+ * Customer Dao class
+ */
 @Entity
 @DynamicUpdate
 @Table(name = "customer")
@@ -45,6 +48,9 @@ public class CustomerDao {
 
     @Column
     private String phoneNumber;
+
+    @Column
+    private String status;
 
     @Column(updatable = false)
     @CreationTimestamp

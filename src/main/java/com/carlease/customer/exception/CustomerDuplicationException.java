@@ -1,5 +1,8 @@
 package com.carlease.customer.exception;
 
+/**
+ * This is the custom exception class if customer is entering duplicate details
+ */
 public class CustomerDuplicationException extends Exception{
     public CustomerDuplicationException() {
         super();

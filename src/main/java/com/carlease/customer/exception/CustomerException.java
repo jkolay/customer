@@ -1,5 +1,7 @@
 package com.carlease.customer.exception;
-
+/**
+ * This is the custom exception class for customer service
+ */
 public class CustomerException extends Exception {
     public CustomerException() {
         super();

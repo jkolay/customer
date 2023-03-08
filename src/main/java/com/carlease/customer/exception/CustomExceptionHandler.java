@@ -34,8 +34,9 @@ import java.util.Map;
 @RestController
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
-    
-    protected ResponseEntity<Object> handleExceptionInternal(Exception ex, @Nullable Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
+
+    @Override
+    protected ResponseEntity<Object> handleExceptionInternal(Exception ex, @Nullable Object body, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         if (HttpStatus.INTERNAL_SERVER_ERROR.equals(status)) {
             request.setAttribute(WebUtils.ERROR_EXCEPTION_ATTRIBUTE, ex, WebRequest.SCOPE_REQUEST);
         }
@@ -60,7 +61,13 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(CustomerNotFoundException.class)
     @ResponseBody
-    public ResponseEntity<Object> handleNotFoundException(CustomerNotFoundException ex) {
+    public ResponseEntity<Object> handleCustomerNotFoundException(CustomerNotFoundException ex) {
+        final CustomerErrorModel error = new CustomerErrorModel(ex.getMessage(), CustomerErrorCodeConfig.INVALID_INPUT, ErrorSeverityLevelCodeType.ERROR);
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(CustomerException.class)
+    @ResponseBody
+    public ResponseEntity<Object> handleCustomerException(CustomerException ex) {
         final CustomerErrorModel error = new CustomerErrorModel(ex.getMessage(), CustomerErrorCodeConfig.INVALID_INPUT, ErrorSeverityLevelCodeType.ERROR);
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
@@ -69,7 +76,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(CustomerDuplicationException.class)
     @ResponseBody
-    public ResponseEntity<Object> handleNotFoundException(CustomerDuplicationException ex) {
+    public ResponseEntity<Object> handleCustomerDuplicationException(CustomerDuplicationException ex) {
         HttpStatus status = HttpStatus.BAD_REQUEST;
         final CustomerErrorModel error = new CustomerErrorModel(ex.getMessage(), CustomerErrorCodeConfig.INVALID_INPUT, ErrorSeverityLevelCodeType.ERROR);
         return new ResponseEntity<>(error, status);

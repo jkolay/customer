@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
+/**
+ * Customer Error Model class for to display error to user
+ */
 @Getter
 @Setter
 @AllArgsConstructor

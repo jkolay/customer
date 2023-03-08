@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Map;
+/**
+ * Customer Error Model class for to display error to user
+ */
 @Getter
 @Setter
 @NoArgsConstructor

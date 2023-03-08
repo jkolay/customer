@@ -1,5 +1,7 @@
 package com.carlease.customer.exception;
-
+/**
+ * This is the custom exception class when customer is not found
+ */
 public class CustomerNotFoundException extends Exception{
     public CustomerNotFoundException() {
         super();

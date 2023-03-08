@@ -11,6 +11,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Customer request model object
+ */
 @Getter
 @Setter
 @AllArgsConstructor
