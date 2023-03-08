@@ -1,6 +1,7 @@
 package com.carlease.customer.persistence;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,11 +11,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.time.LocalDateTime;
-
-/**
- * Customer Dao class
- */
+/** Customer Dao class */
 @Entity
 @DynamicUpdate
 @Table(name = "customer")
@@ -23,41 +20,32 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CustomerDao {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "incrementDomain")
-    @GenericGenerator(name = "incrementDomain", strategy = "increment")
-    private Integer customerId;
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "incrementDomain")
+  @GenericGenerator(name = "incrementDomain", strategy = "increment")
+  private Integer customerId;
 
-    @Column(nullable = false)
-    private String name;
+  @Column(nullable = false)
+  private String name;
 
-    @Column
-    private String street;
+  @Column private String street;
 
-    @Column
-    private String houseNumber;
+  @Column private String houseNumber;
 
-    @Column
-    private String zipcode;
+  @Column private String zipcode;
 
-    @Column
-    private String place;
+  @Column private String place;
 
-    @Column(name="email")
-    private String emailAddress;
+  @Column(name = "email")
+  private String emailAddress;
 
-    @Column
-    private String phoneNumber;
+  @Column private String phoneNumber;
 
-    @Column
-    private String status;
+  @Column private String status;
 
-    @Column(updatable = false)
-    @CreationTimestamp
-    private LocalDateTime createdAt;
+  @Column(updatable = false)
+  @CreationTimestamp
+  private LocalDateTime createdAt;
 
-    @Column
-    @UpdateTimestamp
-    private LocalDateTime updatedAt;
-
+  @Column @UpdateTimestamp private LocalDateTime updatedAt;
 }

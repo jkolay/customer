@@ -7,14 +7,10 @@ public enum CustomerStatus {
     NEW("new"),
     LEASED("leased");
 
-    private String value;
+  private final String value;
 
     CustomerStatus(String value) {
         this.value = value;
-    }
-
-    public String getValue() {
-        return this.value;
     }
 
     public static CustomerStatus fromString(String value) {
@@ -24,5 +20,9 @@ public enum CustomerStatus {
             }
         }
         return null;
+    }
+
+    public String getValue() {
+        return this.value;
     }
 }
