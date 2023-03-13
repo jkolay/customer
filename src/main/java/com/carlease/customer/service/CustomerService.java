@@ -21,9 +21,5 @@ public interface CustomerService {
   CustomerResponse updateCustomer(Integer customerId, CustomerRequest customerRequest)
       throws CustomerNotFoundException;
 
-  CustomerResponse updateCustomerStatus(
-      Integer customerId, CustomerStatusUpdateRequest customerRequest)
-      throws CustomerNotFoundException, CustomerException;
-
   void deleteCustomer(Integer customerId) throws CustomerNotFoundException, CustomerException;
 }

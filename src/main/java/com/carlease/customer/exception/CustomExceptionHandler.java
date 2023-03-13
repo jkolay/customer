@@ -149,6 +149,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
   @ExceptionHandler(Exception.class)
   @ResponseBody
   public ResponseEntity<Object> handleGlobalException(Exception ex) {
+    ex.printStackTrace();
     final CustomerErrorModel error =
         new CustomerErrorModel(
             ex.getMessage(),

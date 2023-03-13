@@ -1,6 +1,5 @@
 package com.carlease.customer.service.impl;
 
-import com.carlease.customer.config.CustomerStatus;
 import com.carlease.customer.exception.CustomerDuplicationException;
 import com.carlease.customer.exception.CustomerException;
 import com.carlease.customer.exception.CustomerNotFoundException;
@@ -53,7 +52,6 @@ public class CustomerServiceImpl implements CustomerService {
       throw new CustomerDuplicationException("Customer email is already present in the app");
     }
     CustomerDao customerDao = customerMapper.mapCustomerRequestToCustomerDao(customerRequest);
-    customerDao.setStatus(CustomerStatus.NEW.getValue());
     return customerMapper.mapCustomerDaoToCustomerResponse(customerRepository.save(customerDao));
   }
   /**
@@ -107,39 +105,13 @@ public class CustomerServiceImpl implements CustomerService {
     if (existingCustomerDao != null) {
       CustomerDao customerDao = customerMapper.mapCustomerRequestToCustomerDao(customerRequest);
       customerDao.setCustomerId(existingCustomerDao.getCustomerId());
-      customerDao.setStatus(existingCustomerDao.getStatus());
       customerDao.setCreatedAt(existingCustomerDao.getCreatedAt());
       return customerMapper.mapCustomerDaoToCustomerResponse(customerRepository.save(customerDao));
     }
     logger.error("Customer details is not available");
     throw new CustomerNotFoundException("Customer Not Found");
   }
-  /**
-   * this is the endpoint implementation to update customer status
-   *
-   * @param customerId the customer id
-   * @param customerRequest the new status
-   * @return the updated customer object
-   * @throws CustomerException this gets thrown if the status value is not correct
-   * @throws CustomerNotFoundException this gets thrown when customer is not found
-   */
-  @Override
-  public CustomerResponse updateCustomerStatus(
-      Integer customerId, CustomerStatusUpdateRequest customerRequest)
-      throws CustomerNotFoundException, CustomerException {
-    CustomerDao existingCustomerDao =
-        Optional.of(customerRepository.findByCustomerId(customerId))
-            .orElseThrow(() -> new CustomerNotFoundException("Customer Not Found"));
-    if (customerRequest.getStatus().equalsIgnoreCase(CustomerStatus.LEASED.getValue())
-        || customerRequest.getStatus().equalsIgnoreCase(CustomerStatus.NEW.getValue())) {
-      existingCustomerDao.setStatus(customerRequest.getStatus());
-      existingCustomerDao.setUpdatedAt(LocalDateTime.now());
-      return customerMapper.mapCustomerDaoToCustomerResponse(
-          customerRepository.save(existingCustomerDao));
-    }
-    throw new CustomerException(
-        "Customer status can not be updated-status can be either NEW or Leased");
-  }
+
   /**
    * this is the implementation to delete a customer
    *
@@ -154,11 +126,7 @@ public class CustomerServiceImpl implements CustomerService {
         Optional.of(customerRepository.findByCustomerId(customerId))
             .orElseThrow(() -> new CustomerNotFoundException("Customer Not Found"));
     logger.info("Customer info is getting deleted");
-    if (existingCustomerDao.getStatus().equalsIgnoreCase(CustomerStatus.NEW.getValue())) {
-      customerRepository.delete(existingCustomerDao);
-    } else {
-      logger.info("Customer can not be deleted");
-      throw new CustomerException("Customer can not be deleted as customer has leased a car");
-    }
+    customerRepository.delete(existingCustomerDao);
+
   }
 }

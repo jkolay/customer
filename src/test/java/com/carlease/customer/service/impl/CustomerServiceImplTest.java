@@ -2,7 +2,6 @@ package com.carlease.customer.service.impl;
 
 import static org.mockito.Mockito.when;
 
-import com.carlease.customer.config.CustomerStatus;
 import com.carlease.customer.exception.CustomerDuplicationException;
 import com.carlease.customer.exception.CustomerException;
 import com.carlease.customer.exception.CustomerNotFoundException;
@@ -63,7 +62,6 @@ public class CustomerServiceImplTest {
     when(customerMapper.mapCustomerRequestToCustomerDao(Mockito.any(CustomerRequest.class)))
         .thenReturn(customerDao);
     when(existingCustomerDao.getCustomerId()).thenReturn(1);
-    when(existingCustomerDao.getStatus()).thenReturn(CustomerStatus.NEW.getValue());
     when(existingCustomerDao.getCreatedAt()).thenReturn(LocalDateTime.now());
     when(customerRepository.save(Mockito.any(CustomerDao.class))).thenReturn(customerDao);
     when(customerMapper.mapCustomerDaoToCustomerResponse(Mockito.any(CustomerDao.class)))
@@ -72,13 +70,5 @@ public class CustomerServiceImplTest {
         new CustomerRequest(
             "J Kolay", "test", "12", "1213", "Amstelveen", "jk@gmail.com", "1234567890");
     Assertions.assertNotNull(customerService.updateCustomer(1, customerRequest));
-  }
-
-  @Test
-  public void deleteCustomerTestWithException() {
-    CustomerDao existingCustomerDao = Mockito.mock(CustomerDao.class);
-    when(customerRepository.findByCustomerId(Mockito.anyInt())).thenReturn(existingCustomerDao);
-    when(existingCustomerDao.getStatus()).thenReturn(CustomerStatus.LEASED.getValue());
-    Assertions.assertThrows(CustomerException.class, () -> customerService.deleteCustomer(1));
   }
 }

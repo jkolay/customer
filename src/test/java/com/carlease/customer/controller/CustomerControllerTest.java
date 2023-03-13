@@ -53,11 +53,4 @@ public class CustomerControllerTest {
     Assertions.assertNotNull(controller.updateCustomer(new CustomerRequest(), 1));
   }
 
-  @Test
-  public void updateCustomerStatusTest() throws CustomerException, CustomerNotFoundException {
-    when(customerService.updateCustomerStatus(
-            Mockito.anyInt(), Mockito.any(CustomerStatusUpdateRequest.class)))
-        .thenReturn(new CustomerResponse());
-    Assertions.assertNotNull(controller.updateCustomerStatus(1, new CustomerStatusUpdateRequest()));
-  }
 }

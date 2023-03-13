@@ -29,8 +29,6 @@ public class CustomerResponse {
 
   private String phoneNumber;
 
-  private String status;
-
   private LocalDateTime createdAt;
 
   private LocalDateTime updatedAt;

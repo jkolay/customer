@@ -41,8 +41,6 @@ public class CustomerDao {
 
   @Column private String phoneNumber;
 
-  @Column private String status;
-
   @Column(updatable = false)
   @CreationTimestamp
   private LocalDateTime createdAt;

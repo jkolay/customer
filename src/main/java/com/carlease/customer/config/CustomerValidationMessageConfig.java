@@ -24,7 +24,11 @@ public class CustomerValidationMessageConfig {
   public static final String ZIPCODE_PATTERN_NOT_VALID = "zipcode pattern is not valid";
   public static final String CUSTOMER_PLACE_PATTERN_NOT_VALID = "Place pattern is not valid";
   public static final String CUSTOMER_EMAIL_PATTERN_NOT_VALID = "Email pattern is not valid";
-  public static final String CUSTOMER_PHONE_NUMBER_PATTERN_NOT_VALID =
-      "Phone number pattern is not valid";
+  public static final String CUSTOMER_PHONE_NUMBER_PATTERN_NOT_VALID = "Phone number pattern is not valid";
   public static final String STATUS_NOT_NULL = "Status can not be null";
+  public static final String USER_NAME_NOT_NULL = "User Name can not be blank";
+  public static final String EMAIL_NOT_NULL = "Email can not be blank";
+  public static final String MOBILE_NOT_NULL = "mobile number can not be blank";
+  public static final String PASSWORD_NOT_NULL = "password can not be blank";
+  public static final String ROLE_NOT_NULL = "Role can not be blank";
 }

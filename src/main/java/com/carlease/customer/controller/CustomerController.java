@@ -56,7 +56,7 @@ public class CustomerController {
    * @throws CustomerNotFoundException this exception gets thrown when customer is not present
    */
   @Operation(description = "Retrieve a customer")
-  @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+  @RequestMapping(method = RequestMethod.GET, value = "/view/{id}")
   @ResponseStatus(HttpStatus.FOUND)
   public ResponseEntity<CustomerResponse> getCustomer(@Valid @PathVariable("id") Integer customerId)
       throws CustomerNotFoundException {
@@ -89,7 +89,7 @@ public class CustomerController {
    * @throws CustomerNotFoundException this gets thrown when the customer not present
    */
   @Operation(description = "Update a customer")
-  @RequestMapping(method = RequestMethod.PUT, value = "/{customerId}")
+  @RequestMapping(method = RequestMethod.PUT, value = "/update/{customerId}")
   @ResponseStatus(HttpStatus.ACCEPTED)
   public ResponseEntity<CustomerResponse> updateCustomer(
       @Valid @RequestBody CustomerRequest request, @PathVariable("customerId") Integer customerId)
@@ -106,32 +106,11 @@ public class CustomerController {
    * @throws CustomerNotFoundException gets thrown when customer is not fond in the system
    */
   @Operation(description = "Delete a customer")
-  @RequestMapping(method = RequestMethod.DELETE, value = "/{customerId}")
+  @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{customerId}")
   @ResponseStatus(HttpStatus.OK)
   public void delete(@PathVariable("customerId") Integer customerId)
       throws CustomerException, CustomerNotFoundException {
     logger.info("Deleting an existing customer");
     customerService.deleteCustomer(customerId);
-  }
-
-  /**
-   * this is the endpoint implementation to update customer status
-   *
-   * @param customerId the customer id
-   * @param updateStatusRequestModel the new status
-   * @return the updated customer object
-   * @throws CustomerException this gets thrown if the status value is not correct
-   * @throws CustomerNotFoundException this gets thrown when customer is not found
-   */
-  @Operation(description = "Update a customer status by customerId")
-  @RequestMapping(method = RequestMethod.PUT, value = "/modify/status/{customerId}")
-  @ResponseStatus(HttpStatus.OK)
-  public ResponseEntity<CustomerResponse> updateCustomerStatus(
-      @PathVariable("customerId") Integer customerId,
-      @Valid @RequestBody CustomerStatusUpdateRequest updateStatusRequestModel)
-      throws CustomerException, CustomerNotFoundException {
-    logger.info("Modifying an existing customer");
-    return ResponseEntity.ok(
-        customerService.updateCustomerStatus(customerId, updateStatusRequestModel));
   }
 }
